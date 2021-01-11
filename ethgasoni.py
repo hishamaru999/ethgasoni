@@ -2,8 +2,10 @@ import requests
 import csv
 import time
 import datetime
+from playsound import playsound
 import defipulse_credentials
 
+myalert = "f:/watame.wav"
 
 with open('fees.csv', 'w') as csvfile:  # this will overwrite the already existing file
     writer = csv.writer(csvfile)
@@ -65,12 +67,18 @@ while (True):
 
 
     # Display Gas Fees
-    now = datetime.now()
-    format = "%d/%m/%Y  %H:%M:%S"
-    timestamp = now.strftime(format)
+    now = date.today()
+    format = "%m/%d/%Y %H:%M:%S"
+    timestamped = now.strftime(format)
 
-    print(f'Time: {timestamp}')
+    if slow_gwei <=45:
+        playsound(myalert)
+    else:
+        pass
+
+    print(f'Time: {timestamped}')
     print(f'Trader: {trader_gwei}  Fast: {fast_gwei}  Average: {average_gwei}  Slow: {slow_gwei} ')
+    print()
 
     # 5 min updates
-    time.sleep(300)
+    time.sleep(180)
