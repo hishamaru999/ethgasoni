@@ -75,12 +75,12 @@ while (True):
 
     print(Fore.BLUE + 'Eth Gas Station:')
     print(f'Time: {timestamped}')
-    print(f'Trader: {trader_gwei}  Fast: {fast_gwei}  Average: {average_gwei}  Slow: {slow_gwei} ')
+    print(f'Trader: {trader_gwei} Average: {average_gwei}  Slow: {slow_gwei} ')
     print()
 
 
     # Play alert if condtions are met
-    if slow_gwei <= 45:
+    if slow_gwei <= 50:
         playsound(myalert)
     else:
         pass
