@@ -3,6 +3,7 @@ import csv
 import time
 import datetime
 from playsound import playsound
+from colorama import Fore, Back, Style
 import defipulse_credentials
 
 myalert = "f:/watame.wav"
@@ -76,6 +77,7 @@ while (True):
     else:
         pass
 
+    print(Fore.BLUE + 'Test:')
     print(f'Time: {timestamped}')
     print(f'Trader: {trader_gwei}  Fast: {fast_gwei}  Average: {average_gwei}  Slow: {slow_gwei} ')
     print()
