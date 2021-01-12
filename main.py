@@ -1,16 +1,28 @@
-# This is a sample Python script.
+# Kivy Pong
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty, ReferenceListProperty
+from kivy.vector import Vector
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class PongGame(Widget):
+    pass
 
+class PongApp(App):
+    def build(self):
+        return PongGame()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    PongApp().run()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# PongBall class - for the game ball
+class PongBall(Widget):
+    # velocity of the ball
+    velocity_x = NumericProperty(0)
+    velocity_y = NumericProperty(0)
+
+    # referencelist property so we can use the ball.velocity
+    velocity = ReferenceListProperty(velocity_x, velocity_y)
+
+    # move function will move the ball one step. used to animate the ball
+    def move(self):
+        self.pos = Vector(*self.velocity) + self.pos
