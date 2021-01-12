@@ -1,3 +1,4 @@
+# ETH Gas Station API - work in progres ...
 import requests
 import csv
 import time

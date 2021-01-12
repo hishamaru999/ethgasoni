@@ -4,15 +4,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty
 from kivy.vector import Vector
 
-class PongGame(Widget):
-    pass
-
-class PongApp(App):
-    def build(self):
-        return PongGame()
-
-if __name__ == '__main__':
-    PongApp().run()
 
 # PongBall class - for the game ball
 class PongBall(Widget):
@@ -26,3 +17,17 @@ class PongBall(Widget):
     # move function will move the ball one step. used to animate the ball
     def move(self):
         self.pos = Vector(*self.velocity) + self.pos
+
+
+class PongGame(Widget):
+    pass
+
+
+class PongApp(App):
+    def build(self):
+        return PongGame()
+
+
+if __name__ == '__main__':
+    PongApp().run()
+
