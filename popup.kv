@@ -1,3 +1,9 @@
+#: import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    auto_dismiss: False
+    title: "Popup Box"
+
 <MyLayout>
     BoxLayout:
         orientation: "vertical"
@@ -10,3 +16,4 @@
         Button:
             text: "Dismiss"
             font_size: 32
+            on_release: Factory.MyPopup().open()
