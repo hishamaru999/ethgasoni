@@ -4,11 +4,17 @@
     auto_dismiss: False
     size_hint: 0.6, 0.4
     pos_hint: {"x":0.2, "top":0.9}
+
     title: "Popup Box"
-    Button:
-        text: "Quit"
-        font_size: 24
-        on_release: root.dismiss()
+
+    BoxLayout:
+        Label:
+            text: "Gas!"
+            font_size: 24
+        Button:
+            text: "Go Back"
+            font_size: 24
+            on_release: root.dismiss()
 
 <MyLayout>
     BoxLayout:
