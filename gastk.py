@@ -13,8 +13,11 @@ root.iconbitmap('f:/ethgas.ico')
 root.geometry("400x400")
 
 # Get gas data from EthGasStation
-request_data = requests.get(f'https://ethgasstation.info/api/ethgasAPI.json?api-key={defipulse_credentials.defipulseApikey}')
-data = request_data.json()
+try:
+    request_data = requests.get(f'https://ethgasstation.info/api/ethgasAPI.json?api-key={defipulse_credentials.defipulseApikey}')
+    data = request_data.json()
+except EXCEPTION as e:
+    data  = "Error!"
 
 # In Gwei
 fast_gwei = data['fast'] / 10
@@ -25,6 +28,13 @@ trader_gwei = data['fastest'] / 10
 # Current Time
 date = datetime.datetime.today()
 
+# Set the gas alert condition
+colorState = None
+
+if trader_gwei <= 100:
+    colorState = "green"
+
+
 # Display Gas Fees
 # Format time and display api results
 now = date.today()
@@ -33,11 +43,11 @@ timestamped = now.strftime(format)
 
 
 # Pass API data to tk
-tstamp = Label(root, text=timestamped)
-traderGas = Label(root, text=trader_gwei)
-fastGas = Label(root, text=fast_gwei)
-avgGas = Label(root, text=average_gwei)
-slowGas = Label(root, text=slow_gwei)
+tstamp = Label(root, text='Timestamp: ' + str(timestamped), font=("Helvetica", 18))
+traderGas = Label(root, text='Trader: ' + str(trader_gwei), font=("Helvetica", 20), background=colorState)
+fastGas = Label(root, text='Fast: ' + str(fast_gwei), font=("Helvetica", 20 ))
+avgGas = Label(root, text='Average: ' + str(average_gwei), font=("Helvetica", 20))
+slowGas = Label(root, text='Slow: ' + str(slow_gwei), font=("Helvetica", 20))
 tstamp.pack()
 traderGas.pack()
 fastGas.pack()
