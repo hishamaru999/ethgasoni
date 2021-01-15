@@ -11,6 +11,7 @@ root = Tk()
 root.title('ETH Gas Station')
 root.iconbitmap('f:/ethgas.ico')
 root.geometry("400x400")
+root.config(background="blue")
 
 # Get gas data from EthGasStation
 try:
@@ -33,6 +34,10 @@ colorState = None
 
 if trader_gwei <= 100:
     colorState = "green"
+elif trader_gwei >= 100:
+    colorState = "red"
+else:
+    colorState = "lightblue"
 
 
 # Display Gas Fees
@@ -43,11 +48,11 @@ timestamped = now.strftime(format)
 
 
 # Pass API data to tk
-tstamp = Label(root, text='Timestamp: ' + str(timestamped), font=("Helvetica", 18))
+tstamp = Label(root, text='Timestamp: ' + str(timestamped), font=("Helvetica", 18), background="lightblue")
 traderGas = Label(root, text='Trader: ' + str(trader_gwei), font=("Helvetica", 20), background=colorState)
-fastGas = Label(root, text='Fast: ' + str(fast_gwei), font=("Helvetica", 20 ))
-avgGas = Label(root, text='Average: ' + str(average_gwei), font=("Helvetica", 20))
-slowGas = Label(root, text='Slow: ' + str(slow_gwei), font=("Helvetica", 20))
+fastGas = Label(root, text='Fast: ' + str(fast_gwei), font=("Helvetica", 20), background="lightblue")
+avgGas = Label(root, text='Average: ' + str(average_gwei), font=("Helvetica", 20), background="lightblue")
+slowGas = Label(root, text='Slow: ' + str(slow_gwei), font=("Helvetica", 20), background="lightblue")
 tstamp.pack()
 traderGas.pack()
 fastGas.pack()
