@@ -9,7 +9,8 @@ import defipulse_credentials
 
 root = Tk()
 root.title('ETH Gas Station')
-root.iconbitmap('f:/ethgas.ico')
+thebg = 'white'
+root.config(bg=thebg)
 root.geometry("400x400")
 
 # Get gas data from EthGasStation
@@ -17,7 +18,7 @@ try:
     request_data = requests.get(f'https://ethgasstation.info/api/ethgasAPI.json?api-key={defipulse_credentials.defipulseApikey}')
     data = request_data.json()
 except EXCEPTION as e:
-    data  = "Error!"
+    data = "Error!"
 
 # In Gwei
 fast_gwei = data['fast'] / 10
@@ -30,7 +31,6 @@ date = datetime.datetime.today()
 
 # Set the gas alert condition
 colorState = None
-
 if trader_gwei <= 100:
     colorState = "#2FB999"
 
@@ -43,11 +43,11 @@ timestamped = now.strftime(format)
 
 
 # Pass API data to tk
-tstampLabel = Label(root, text='Timestamp: ' + str(timestamped), font=("Calibri bold", 18))
+tstampLabel = Label(root, text='Timestamp: ' + str(timestamped), font=("Calibri bold", 18), background=thebg)
 traderGasLabel = Label(root, text='Trader: ' + str(trader_gwei), font=("Calibri bold", 20), background=colorState)
-fastGasLabel = Label(root, text='Fast: ' + str(fast_gwei), font=("Calibri bold", 20 ))
-avgGasLabel = Label(root, text='Average: ' + str(average_gwei), font=("Calibri bold", 20))
-slowGasLabel = Label(root, text='Slow: ' + str(slow_gwei), font=("Calibri bold", 20))
+fastGasLabel = Label(root, text='Fast: ' + str(fast_gwei), font=("Calibri bold", 20), background=thebg)
+avgGasLabel = Label(root, text='Average: ' + str(average_gwei), font=("Calibri bold", 20), background=thebg)
+slowGasLabel = Label(root, text='Slow: ' + str(slow_gwei), font=("Calibri bold", 20), background=thebg)
 
 tstampLabel.pack()
 traderGasLabel.pack()
