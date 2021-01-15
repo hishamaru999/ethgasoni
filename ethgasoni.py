@@ -71,17 +71,17 @@ while (True):
     # Display Gas Fees
     # Format time and display api results
     now = date.today()
-    format = "%m/%d/%Y %H:%M:%S"
+    format = "%a, %b %d %H:%M:%S"
     timestamped = now.strftime(format)
 
     print(Fore.BLUE + 'Eth Gas Station:')
-    print(f'Time: {timestamped}')
+    print(f'{timestamped}')
     print(f'Trader: {trader_gwei} Average: {average_gwei}  Slow: {slow_gwei} ')
     print()
 
 
     # Play alert if condtions are met
-    if average_gwei <= 45:
+    if average_gwei <= 30:
         playsound(myalert)
     else:
         pass
