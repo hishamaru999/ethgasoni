@@ -81,7 +81,7 @@ while (True):
 
 
     # Play alert if condtions are met
-    if average_gwei <= 30:
+    if average_gwei <= 45:
         playsound(myalert)
     else:
         pass
