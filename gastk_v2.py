@@ -11,7 +11,7 @@ import defipulse_credentials
 root = Tk()
 root.title('ETH Gas Station')
 root.geometry("400x400")
-thebackground = "#0237CC"
+thebackground = "white"
 root.config(background=thebackground)
 
 img = Image.open("f:/egs_transparent.png")
@@ -30,8 +30,7 @@ timeGasLabel = Label(root, font=("Calibri bold", 12), bg="white")
 timeGasLabel.grid(row=4, sticky="N", padx=80)
 
 
-# TODO:  Create function to pull API data so it can be called from a while loop
-# Get gas data from EthGasStation
+# Get gas data from EthGasStation API
 def getGas():
     request_data = requests.get(f'https://ethgasstation.info/api/ethgasAPI.json?api-key={defipulse_credentials.defipulseApikey}')
     data = request_data.json()
@@ -40,29 +39,30 @@ def getGas():
     average_gwei = data['average'] / 10
     slow_gwei = data['safeLow'] / 10
     trader_gwei = data['fastest'] / 10
-    print(f'Fast: {fast_gwei}')
+
+    traderGasLabel.config(text=trader_gwei)
+    fastGasLabel.config(text=fast_gwei)
+    averageGasLabel.config(text=average_gwei)
+    slowgasLabel.config(text=slow_gwei)
+
+    # Timestamp
+    date = datetime.datetime.today()
+    now = date.today()
+    format = "%a, %b %d %H:%M:%S"
+    timestamped = now.strftime(format)
+
+    timeGasLabel.config(text=timestamped)
+   
+    
+    # Update gas data from API
+    #traderGasLabel.after(60000, getGas())
+    #fastGasLabel.after(60000, getGas())
+    #averageGasLabel.after(60000, getGas())
+    #slowgasLabel.after(60000, getGas())
+
+    root.update()
 
 
-date = datetime.datetime.today()
-now = date.today()
-format = "%a, %b %d %H:%M:%S"
-timestamped = now.strftime(format)
-
-
-#tstampLabel.config(text=timestamped)
-#traderGasLabel.config(text="Trader:" + str(trader_gwei))
-
-#fastGasLabel.config(text=fast_gwei)
-#fastGasLabel.config(text="Fast:" + str(fast_gwei))
-
-#avgGasLabel.config(text=average_gwei)
-#averageGasLabel.config(text="Average: " + str(average_gwei))
-
-#slowGasLabel.config(text=slow_gwei)
-#slowgasLabel.config(text="Slow: " + str(slow_gwei))
-
-#timeGasLabel
-timeGasLabel.config(text="Time: " + str(timestamped))
 
 getGas()
 
