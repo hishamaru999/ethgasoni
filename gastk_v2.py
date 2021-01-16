@@ -65,3 +65,5 @@ def getGas():
 getGas()
 
 root.mainloop()
+
+#ToDo: Add refresh ability
