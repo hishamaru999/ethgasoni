@@ -26,6 +26,8 @@ averageGasLabel = Label(root, font=("Calibri bold", 20), bg="white")
 averageGasLabel.grid(row=2, sticky="N", padx=100)
 slowgasLabel = Label(root, font=("Calibri bold", 20), bg="white")
 slowgasLabel.grid(row=3, sticky="N", padx=100)
+timeGasLabel = Label(root, font=("Calibri bold", 12), bg="white")
+timeGasLabel.grid(row=4, sticky="N", padx=80)
 
 # TODO:  Create function to pull API data so it can be called from a while loop
 
@@ -59,5 +61,7 @@ averageGasLabel.config(text="Average: " + str(average_gwei))
 #slowGasLabel.config(text=slow_gwei)
 slowgasLabel.config(text="Slow: " + str(slow_gwei))
 
+#timeGasLabel
+timeGasLabel.config(text="Time: " + str(timestamped))
 
 root.mainloop()
