@@ -27,6 +27,7 @@ averageGasLabel.grid(row=2, sticky="N", padx=100)
 slowgasLabel = Label(root, font=("Calibri bold", 20), bg="white")
 slowgasLabel.grid(row=3, sticky="N", padx=100)
 
+# TODO:  Create function to pull API data so it can be called from a while loop
 
 # Get gas data from EthGasStation
 request_data = requests.get(f'https://ethgasstation.info/api/ethgasAPI.json?api-key={defipulse_credentials.defipulseApikey}')
