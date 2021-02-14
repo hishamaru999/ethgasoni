@@ -18,7 +18,7 @@ with open('fees.csv', 'w') as csvfile:  # this will overwrite the already existi
          "Fast tx USD", "Average tx USD", "Slow tx USD", "Fast erc tx USD", "Average erc tx USD", "Slow erc tx USD"])
 
 
-while (True):
+while True:
     # Get Ethereum price in USD from CoinGecko
     request_price = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
     price = request_price.json()['ethereum']['usd']
@@ -76,12 +76,13 @@ while (True):
 
     print(Fore.BLUE + 'Eth Gas Station:')
     print(f'{timestamped}')
-    print(f'Trader: {trader_gwei} Average: {average_gwei}  Slow: {slow_gwei} ')
+    print(f'Trader: {trader_gwei} Fast: {fast_gwei} Standard: {average_gwei}  Slow: {slow_gwei} ')
     print()
+    #print(f'ERC20 Trader Fee: {erc20_trader_fee} Trader Fee: {trader_fee}')
 
 
     # Play alert if condtions are met
-    if average_gwei <= 30:
+    if average_gwei <= 40:
         playsound(myalert)
     else:
         pass
